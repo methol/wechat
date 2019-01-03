@@ -7,6 +7,20 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.datamatrix.encoder.SymbolShapeHint;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+
+import org.apache.tomcat.util.buf.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import me.nielcho.wechat.constants.WeChatConstants;
@@ -16,23 +30,21 @@ import me.nielcho.wechat.manager.WeChatManager;
 import me.nielcho.wechat.request.AddContactFromGroupRequest;
 import me.nielcho.wechat.request.SendMsgRequest;
 import me.nielcho.wechat.request.SetRemarkRequest;
-import me.nielcho.wechat.response.*;
+import me.nielcho.wechat.response.BaseResponse;
+import me.nielcho.wechat.response.SendMessageResponse;
+import me.nielcho.wechat.response.SetRemarkResponse;
+import me.nielcho.wechat.response.UserResponse;
 import me.nielcho.wechat.service.WeChatService;
 import me.nielcho.wechat.session.WeChatSession;
 import okhttp3.Response;
-import org.apache.tomcat.util.buf.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Api("微信")
 @RestController

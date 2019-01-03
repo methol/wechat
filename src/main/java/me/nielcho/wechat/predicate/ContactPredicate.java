@@ -13,6 +13,7 @@ public class ContactPredicate implements Predicate<GetContactResponse> {
     private static final String GROUP_CONTACT_PREFIX = "@@";
 
     private static final ContactPredicate INSTANCE = new ContactPredicate();
+
     public static boolean isGroupContact(String username) {
         return username != null && username.startsWith(GROUP_CONTACT_PREFIX);
     }

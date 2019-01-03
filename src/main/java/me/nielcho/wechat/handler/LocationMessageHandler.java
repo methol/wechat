@@ -14,7 +14,7 @@ public class LocationMessageHandler extends MessageHandler {
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.LOCATION;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
         String rawContent = weChatMessage.getContent();

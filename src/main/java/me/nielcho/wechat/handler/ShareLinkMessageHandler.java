@@ -12,15 +12,15 @@ import java.util.regex.Pattern;
 
 @Component
 public class ShareLinkMessageHandler extends MessageHandler {
-    
+
     private static final Pattern DESC_PATTERN = Pattern.compile("<des>(.+?)</des>");
     private static final Pattern THUMB_URL_PATTERN = Pattern.compile("<thumburl>(.+?)</thumburl>");
-    
+
     @Override
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.SHARE_LINK;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
         weChatMessage.setTitle(message.getFileName());

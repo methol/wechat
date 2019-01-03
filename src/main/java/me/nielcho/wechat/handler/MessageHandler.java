@@ -28,6 +28,7 @@ public abstract class MessageHandler {
 
     @Autowired
     private WeChatService weChatService;
+
     public abstract WeChatConstants.MessageType getSupportedType();
 
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
@@ -72,7 +73,7 @@ public abstract class MessageHandler {
             if (weChatMessage.getMsgType() != WeChatConstants.MessageType.SYSTEM.getMsgType() && colonIndex > 0) {
                 String fromGroupUserUserName = rawContent.substring(0, colonIndex).trim();
                 ContactInfo fromGroup = fromUser;
-                fromUser =  weChatService.getContactInfo(context, fromGroupUserUserName);
+                fromUser = weChatService.getContactInfo(context, fromGroupUserUserName);
                 weChatMessage.setContent(rawContent.substring(colonIndex + 6));
                 weChatMessage.setFromGroupUserName(fromGroup.getUsername());
                 weChatMessage.setFromGroup(fromGroup.getNickname());

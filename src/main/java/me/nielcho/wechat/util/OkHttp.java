@@ -72,9 +72,9 @@ public class OkHttp {
                 return null;
             }
             return JSON.parseObject(result, clazz);
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.error("error parse json:" + result, e);
-            throw  e;
+            throw e;
         }
     }
 }

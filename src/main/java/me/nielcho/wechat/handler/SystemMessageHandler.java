@@ -21,11 +21,11 @@ public class SystemMessageHandler extends MessageHandler {
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.SYSTEM;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
     }
-    
+
     @Override
     WeChatMessage fromMessageResponse(WeChatContext context, MessageResponse response) {
         WeChatMessage weChatMessage = new WeChatMessage();

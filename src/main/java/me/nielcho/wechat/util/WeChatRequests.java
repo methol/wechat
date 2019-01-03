@@ -1,18 +1,65 @@
 package me.nielcho.wechat.util;
 
-import static me.nielcho.wechat.constants.WeChatConstants.*;
-
 import com.alibaba.fastjson.JSON;
-import me.nielcho.wechat.context.WeChatContext;
-import me.nielcho.wechat.request.*;
-import okhttp3.*;
+
 import org.apache.commons.collections.MapUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import me.nielcho.wechat.context.WeChatContext;
+import me.nielcho.wechat.request.AddContactRequest;
+import me.nielcho.wechat.request.GetBatchContactRequest;
+import me.nielcho.wechat.request.GetBatchUserName;
+import me.nielcho.wechat.request.Msg;
+import me.nielcho.wechat.request.OpenStatusNotifyRequest;
+import me.nielcho.wechat.request.SendMediaRequest;
+import me.nielcho.wechat.request.SendTextRequest;
+import me.nielcho.wechat.request.SetRemarkRequest;
+import me.nielcho.wechat.request.UploadMediaRequest;
+import me.nielcho.wechat.request.VerifyUserRequest;
+import me.nielcho.wechat.request.WeChatInitRequest;
+import me.nielcho.wechat.request.WeChatSyncRequest;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import static me.nielcho.wechat.constants.WeChatConstants.DEFAULT_REDIRECT_URI;
+import static me.nielcho.wechat.constants.WeChatConstants.LANG;
+import static me.nielcho.wechat.constants.WeChatConstants.SEND_FILE_APPID;
+import static me.nielcho.wechat.constants.WeChatConstants.WEB_WX_APPID;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_ADD_CONTACT_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_CHECK_LOGIN_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_BATCH_CONTACT_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_CONTACT_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_GROUP_ICON;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_ICON;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_IMAGE_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_LOCATION_IMAGE_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_MEDIA_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_VIDEO_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_GET_VOICE_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_INIT_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_LOGIN_REQUEST_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_LOGOUT_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_OPEN_STATUS_NOTIFY_CODE;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_OPEN_STATUS_NOTIFY_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SEND_FILE_TEMPLATE;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SEND_FILE_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SEND_IMAGE_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SEND_TEXT_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SET_REMARK_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SYNC_CHECK_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_SYNC_URL;
+import static me.nielcho.wechat.constants.WeChatConstants.WX_UPLOAD_MEDIA_URL;
 
 
 public class WeChatRequests {

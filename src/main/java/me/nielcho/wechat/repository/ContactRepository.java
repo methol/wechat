@@ -1,10 +1,15 @@
 package me.nielcho.wechat.repository;
 
-import me.nielcho.wechat.domain.ContactInfo;
-import me.nielcho.wechat.util.Util;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import me.nielcho.wechat.domain.ContactInfo;
+import me.nielcho.wechat.util.Util;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 

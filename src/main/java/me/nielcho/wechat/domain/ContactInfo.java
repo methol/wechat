@@ -1,5 +1,8 @@
 package me.nielcho.wechat.domain;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.util.StringUtils;
+
 import me.nielcho.wechat.constants.WeChatConstants;
 import me.nielcho.wechat.context.WeChatContext;
 import me.nielcho.wechat.predicate.ContactPredicate;
@@ -7,8 +10,6 @@ import me.nielcho.wechat.response.GetContactResponse;
 import me.nielcho.wechat.response.Member;
 import me.nielcho.wechat.response.ModContact;
 import me.nielcho.wechat.util.WeChatUtil;
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.beans.Transient;
 import java.util.HashMap;
@@ -27,11 +28,6 @@ public class ContactInfo {
     private String pyInitial;
     private String remarkPyInitial;
     private List<ContactInfo> members;
-
-    @Transient
-    public boolean isGroup() {
-        return ContactPredicate.isGroupContact(username);
-    }
 
     private static void processEmptySkey(String skey, ContactInfo contactInfo) {
         String icon = contactInfo.getIcon();
@@ -99,6 +95,11 @@ public class ContactInfo {
         contactInfo.setIcon(icon);
         processGroup(contactInfo, getContactResponse.getMemberList());
         return contactInfo;
+    }
+
+    @Transient
+    public boolean isGroup() {
+        return ContactPredicate.isGroupContact(username);
     }
 
     @Override

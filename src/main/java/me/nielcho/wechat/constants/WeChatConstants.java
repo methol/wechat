@@ -96,10 +96,6 @@ public class WeChatConstants {
             this.name = name;
         }
 
-        public boolean match(int msgType, int subMsgType, int appMsgType) {
-            return this.msgType == msgType && this.subMsgType == subMsgType && this.appMsgType == appMsgType;
-        }
-
         public static MessageType getMessageType(int msgType, int subMsgType, int appMsgType) {
             for (MessageType messageType : MessageType.values()) {
                 if (messageType.match(msgType, subMsgType, appMsgType)) {
@@ -107,6 +103,10 @@ public class WeChatConstants {
                 }
             }
             return null;
+        }
+
+        public boolean match(int msgType, int subMsgType, int appMsgType) {
+            return this.msgType == msgType && this.subMsgType == subMsgType && this.appMsgType == appMsgType;
         }
 
         public int getMsgType() {

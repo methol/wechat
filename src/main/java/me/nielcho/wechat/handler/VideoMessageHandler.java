@@ -14,7 +14,7 @@ public class VideoMessageHandler extends MessageHandler {
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.VIDEO;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
         weChatMessage.setContent("");

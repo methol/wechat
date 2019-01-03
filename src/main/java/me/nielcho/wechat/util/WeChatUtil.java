@@ -5,7 +5,12 @@ import org.springframework.util.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,9 +79,9 @@ public class WeChatUtil {
         String[] keyValuePair = param.split("&");
         Map<String, String> map = new HashMap<>();
         for (String kv : keyValuePair) {
-            int equalIdx =  kv.indexOf("=");
+            int equalIdx = kv.indexOf("=");
             if (equalIdx != kv.length() - 1) {
-                map.put(kv.substring(0,equalIdx), kv.substring(equalIdx+1));
+                map.put(kv.substring(0, equalIdx), kv.substring(equalIdx + 1));
             }
         }
         return map;
@@ -121,6 +126,6 @@ public class WeChatUtil {
 
 
     static long invertLong(long n) {
-        return ((~(int)(n >> 8)) << 8) & ~(int)(n);
+        return ((~(int) (n >> 8)) << 8) & ~(int) (n);
     }
 }

@@ -3,10 +3,10 @@ package me.nielcho.wechat.response;
 import java.util.Objects;
 
 public class InitResponse extends BaseWxResponse {
-    
-//    int Count;
+
+    //    int Count;
     private String ChatSet;
-//    int ClickReportInterval;
+    //    int ClickReportInterval;
 //    int ClientVersion;
 //    List<GetContactResponse> ContactList;
 //    int GrayScale;
@@ -14,7 +14,7 @@ public class InitResponse extends BaseWxResponse {
 //    int MPSubscribeMsgCount;
 //    String SKey;
     private SyncKey SyncKey;
-//    Long SystemTime;
+    //    Long SystemTime;
     private UserResponse User;
 
     @Override

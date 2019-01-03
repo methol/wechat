@@ -9,6 +9,7 @@ import me.nielcho.wechat.response.MessageResponse;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 @Component
 public class EmotionMessageHandler extends MessageHandler {
 

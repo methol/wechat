@@ -14,7 +14,7 @@ public class VoiceMessageHandler extends MessageHandler {
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.VOICE;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
         weChatMessage.setContent("");

@@ -23,11 +23,12 @@ public class CardMessageHandler extends MessageHandler {
 
     private static final Pattern HEAD_IMG_PATTERN = Pattern.compile("smallheadimgurl=\"(\\S+?)\"");
     private static final Pattern WX_NO_PATTERN = Pattern.compile("username=\"(\\S+?)\"");
+
     @Override
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.CARD;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
         JSONObject recommendInfo = JSONObject.parseObject(message.getRecommendInfo());
@@ -44,6 +45,6 @@ public class CardMessageHandler extends MessageHandler {
         weChatMessage.setContent(JSON.toJSONString(content));
         log.info("");
     }
-    
-    
+
+
 }

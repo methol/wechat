@@ -14,7 +14,7 @@ public class TextMessageHandler extends MessageHandler {
     public WeChatConstants.MessageType getSupportedType() {
         return WeChatConstants.MessageType.TEXT;
     }
-    
+
     @Override
     public void handleInternal(WeChatContext context, MessageResponse message, WeChatMessage weChatMessage) {
 

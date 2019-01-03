@@ -26,11 +26,6 @@ public class Util implements ApplicationContextAware {
         return (T) beanFactory.initializeBean(bean, bean.getClass().getName());
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        Util.applicationContext = applicationContext;
-    }
-
     // null safe get the first element in a collection
     public static <T> T firstOf(Collection<T> collection) {
         if (CollectionUtils.isEmpty(collection)) return null;
@@ -38,5 +33,10 @@ public class Util implements ApplicationContextAware {
             if (instance != null) return instance;
         }
         return null;
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        Util.applicationContext = applicationContext;
     }
 }
