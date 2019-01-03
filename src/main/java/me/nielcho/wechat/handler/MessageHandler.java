@@ -1,6 +1,10 @@
 package me.nielcho.wechat.handler;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import me.nielcho.wechat.constants.WeChatConstants;
 import me.nielcho.wechat.context.WeChatContext;
 import me.nielcho.wechat.domain.ContactInfo;
@@ -8,8 +12,6 @@ import me.nielcho.wechat.domain.WeChatMessage;
 import me.nielcho.wechat.repository.ContactRepository;
 import me.nielcho.wechat.response.MessageResponse;
 import me.nielcho.wechat.service.WeChatService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -17,8 +19,9 @@ import java.util.regex.Pattern;
 
 
 @Component
-@Slf4j
 public abstract class MessageHandler {
+    private static final Logger log = LoggerFactory.getLogger(MessageHandler.class);
+
 
     @Autowired
     protected ContactRepository contactRepository;

@@ -1,28 +1,41 @@
 package me.nielcho.wechat.service;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 import me.nielcho.wechat.context.WeChatContext;
 import me.nielcho.wechat.domain.ContactInfo;
 import me.nielcho.wechat.predicate.ContactPredicate;
 import me.nielcho.wechat.repository.ContactRepository;
+import me.nielcho.wechat.response.BaseResponse;
+import me.nielcho.wechat.response.BaseWxResponse;
+import me.nielcho.wechat.response.GetBatchContactResponse;
+import me.nielcho.wechat.response.Member;
+import me.nielcho.wechat.response.SendMessageResponse;
+import me.nielcho.wechat.response.SetRemarkResponse;
+import me.nielcho.wechat.response.UploadMediaResponse;
 import me.nielcho.wechat.util.OkHttp;
 import me.nielcho.wechat.util.Util;
 import me.nielcho.wechat.util.WeChatRequests;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-import me.nielcho.wechat.response.*;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
-@Slf4j
 @Service
 public class WeChatService {
+    private static final Logger log = LoggerFactory.getLogger(WeChatService.class);
+
 
     @Autowired
     private ContactRepository contactRepository;

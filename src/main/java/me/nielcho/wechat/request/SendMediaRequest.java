@@ -1,14 +1,36 @@
 package me.nielcho.wechat.request;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
 
-@Data
 public class SendMediaRequest {
     @JSONField(name = "BaseRequest")
-    BaseRequest BaseRequest;
+    private BaseRequest BaseRequest;
     @JSONField(name = "Msg")
-    Msg Msg;
+    private Msg Msg;
     @JSONField(name = "Scene")
-    Integer Scene;
+    private Integer Scene;
+
+    public me.nielcho.wechat.request.BaseRequest getBaseRequest() {
+        return BaseRequest;
+    }
+
+    public void setBaseRequest(me.nielcho.wechat.request.BaseRequest baseRequest) {
+        BaseRequest = baseRequest;
+    }
+
+    public me.nielcho.wechat.request.Msg getMsg() {
+        return Msg;
+    }
+
+    public void setMsg(me.nielcho.wechat.request.Msg msg) {
+        Msg = msg;
+    }
+
+    public Integer getScene() {
+        return Scene;
+    }
+
+    public void setScene(Integer scene) {
+        Scene = scene;
+    }
 }

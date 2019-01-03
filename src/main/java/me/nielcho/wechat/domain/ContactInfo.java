@@ -1,6 +1,5 @@
 package me.nielcho.wechat.domain;
 
-import lombok.Data;
 import me.nielcho.wechat.constants.WeChatConstants;
 import me.nielcho.wechat.context.WeChatContext;
 import me.nielcho.wechat.predicate.ContactPredicate;
@@ -18,17 +17,16 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Data
 public class ContactInfo {
-    String username;
-    String aid;
-    String nickname;
-    String remarkName;
-    String chatroomId;
-    String icon;
-    String pyInitial;
-    String remarkPyInitial;
-    List<ContactInfo> members;
+    private String username;
+    private String aid;
+    private String nickname;
+    private String remarkName;
+    private String chatroomId;
+    private String icon;
+    private String pyInitial;
+    private String remarkPyInitial;
+    private List<ContactInfo> members;
 
     @Transient
     public boolean isGroup() {
@@ -112,5 +110,77 @@ public class ContactInfo {
                 && Objects.equals(this.getNickname(), another.getNickname())
                 && Objects.equals(this.getRemarkName(), another.getRemarkName())
                 && Objects.equals(this.getAid(), another.getAid());
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getAid() {
+        return aid;
+    }
+
+    public void setAid(String aid) {
+        this.aid = aid;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getRemarkName() {
+        return remarkName;
+    }
+
+    public void setRemarkName(String remarkName) {
+        this.remarkName = remarkName;
+    }
+
+    public String getChatroomId() {
+        return chatroomId;
+    }
+
+    public void setChatroomId(String chatroomId) {
+        this.chatroomId = chatroomId;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getPyInitial() {
+        return pyInitial;
+    }
+
+    public void setPyInitial(String pyInitial) {
+        this.pyInitial = pyInitial;
+    }
+
+    public String getRemarkPyInitial() {
+        return remarkPyInitial;
+    }
+
+    public void setRemarkPyInitial(String remarkPyInitial) {
+        this.remarkPyInitial = remarkPyInitial;
+    }
+
+    public List<ContactInfo> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<ContactInfo> members) {
+        this.members = members;
     }
 }

@@ -1,27 +1,35 @@
 package me.nielcho.wechat.session;
 
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import me.nielcho.wechat.constants.WeChatConstants;
 import me.nielcho.wechat.context.WeChatContext;
 import me.nielcho.wechat.domain.ContactInfo;
+import me.nielcho.wechat.handler.DelContactHandler;
+import me.nielcho.wechat.handler.MessageHandler;
+import me.nielcho.wechat.handler.ModContactHandler;
 import me.nielcho.wechat.predicate.ContactPredicate;
 import me.nielcho.wechat.repository.ContactRepository;
 import me.nielcho.wechat.request.BaseRequest;
-import me.nielcho.wechat.response.*;
-import me.nielcho.wechat.handler.*;
+import me.nielcho.wechat.response.BaseWxResponse;
+import me.nielcho.wechat.response.GetContactResponse;
+import me.nielcho.wechat.response.GetMemberContactResponse;
+import me.nielcho.wechat.response.InitResponse;
+import me.nielcho.wechat.response.MessageResponse;
+import me.nielcho.wechat.response.SyncResponse;
+import me.nielcho.wechat.response.UserResponse;
 import me.nielcho.wechat.service.WeChatService;
 import me.nielcho.wechat.util.OkHttp;
 import me.nielcho.wechat.util.WeChatRequests;
 import me.nielcho.wechat.util.WeChatUtil;
 import okhttp3.Request;
-import org.apache.commons.collections.CollectionUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,11 +40,25 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Consumer;
 
-import static me.nielcho.wechat.constants.WeChatConstants.*;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+
+import static me.nielcho.wechat.constants.WeChatConstants.LOGIN_CODE_PATTERN;
+import static me.nielcho.wechat.constants.WeChatConstants.LOGIN_REDIRECT_PATTERN;
+import static me.nielcho.wechat.constants.WeChatConstants.MessageType;
+import static me.nielcho.wechat.constants.WeChatConstants.NOT_SCANNED;
+import static me.nielcho.wechat.constants.WeChatConstants.SCANNED;
+import static me.nielcho.wechat.constants.WeChatConstants.SESSION_STATE_LOGGING;
+import static me.nielcho.wechat.constants.WeChatConstants.SESSION_STATE_LOGINED;
+import static me.nielcho.wechat.constants.WeChatConstants.SYNC_CHECK_PATTERN;
+import static me.nielcho.wechat.constants.WeChatConstants.USER_AVATAR_PATTERN;
+import static me.nielcho.wechat.constants.WeChatConstants.UUID_PATTERN;
 import static me.nielcho.wechat.util.WeChatUtil.match;
 
-@Slf4j
 public class WeChatSession implements Runnable {
+
+    private static final Logger log = LoggerFactory.getLogger(WeChatSession.class);
+
 
     private final String id;
     private final WeChatContext context = new WeChatContext();

@@ -1,17 +1,38 @@
 package me.nielcho.wechat.request;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
+
 import me.nielcho.wechat.response.SyncKey;
 
-@Data
 public class WeChatSyncRequest {
     @JSONField(name = "BaseRequest")
-    BaseRequest baseRequest;
+    private BaseRequest baseRequest;
     @JSONField(name = "SyncKey")
-    SyncKey syncKey;
+    private SyncKey syncKey;
     @JSONField(name = "rr")
-    long rr;
-    
-    
+    private long rr;
+
+    public BaseRequest getBaseRequest() {
+        return baseRequest;
+    }
+
+    public void setBaseRequest(BaseRequest baseRequest) {
+        this.baseRequest = baseRequest;
+    }
+
+    public SyncKey getSyncKey() {
+        return syncKey;
+    }
+
+    public void setSyncKey(SyncKey syncKey) {
+        this.syncKey = syncKey;
+    }
+
+    public long getRr() {
+        return rr;
+    }
+
+    public void setRr(long rr) {
+        this.rr = rr;
+    }
 }

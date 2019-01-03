@@ -1,8 +1,13 @@
 package me.nielcho.wechat.response;
 
-import lombok.Data;
-
-@Data
 public class Buff {
-    String Buff;
+    private String Buff;
+
+    public String getBuff() {
+        return Buff;
+    }
+
+    public void setBuff(String buff) {
+        Buff = buff;
+    }
 }

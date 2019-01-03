@@ -1,10 +1,15 @@
 package me.nielcho.wechat.response;
 
-import lombok.Data;
-
-
-@Data
 public class DelContact {
-    String UserName;
+    private String UserName;
     //int ContactFlag;
+
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
 }

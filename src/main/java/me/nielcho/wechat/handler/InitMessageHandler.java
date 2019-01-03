@@ -1,15 +1,17 @@
 package me.nielcho.wechat.handler;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
 import me.nielcho.wechat.constants.WeChatConstants;
 import me.nielcho.wechat.context.WeChatContext;
 import me.nielcho.wechat.domain.ContactInfo;
 import me.nielcho.wechat.response.MessageResponse;
-import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class InitMessageHandler extends MessageHandler {
+    private static final Logger log = LoggerFactory.getLogger(InitMessageHandler.class);
 
 
     @Override

@@ -1,12 +1,26 @@
 package me.nielcho.wechat.response;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
 
-@Data
 public class SyncKeyPair {
     @JSONField(name = "Key")
-    int Key;
+    private int Key;
     @JSONField(name = "Val")
-    int Val;
+    private int Val;
+
+    public int getKey() {
+        return Key;
+    }
+
+    public void setKey(int key) {
+        Key = key;
+    }
+
+    public int getVal() {
+        return Val;
+    }
+
+    public void setVal(int val) {
+        Val = val;
+    }
 }

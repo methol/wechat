@@ -2,10 +2,17 @@ package me.nielcho.wechat.util;
 
 
 import com.alibaba.fastjson.JSON;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import okhttp3.ConnectionPool;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,8 +21,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-@Slf4j
 public class OkHttp {
+    private static final Logger log = LoggerFactory.getLogger(OkHttp.class);
+
 
     private static final OkHttpClient client = new OkHttpClient.Builder()
             .connectionPool(new ConnectionPool(100, 60, TimeUnit.SECONDS))

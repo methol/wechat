@@ -1,17 +1,15 @@
 package me.nielcho.wechat.request;
 
 
-import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
 
-@Data
 public class SendMsgRequest {
-    String to;
-    List<String> receivers;
-    String content;
+    private String to;
+    private List<String> receivers;
+    private String content;
 
     public void validate() {
         if (StringUtils.isEmpty(to) && CollectionUtils.isEmpty(receivers)) {
@@ -23,5 +21,29 @@ public class SendMsgRequest {
         if (content.length() > 5000) {
             throw new IllegalArgumentException("发送内容过长, 最大5000个汉字!");
         }
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public List<String> getReceivers() {
+        return receivers;
+    }
+
+    public void setReceivers(List<String> receivers) {
+        this.receivers = receivers;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

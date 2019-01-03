@@ -1,9 +1,22 @@
 package me.nielcho.wechat.response;
 
-import lombok.Data;
-
-@Data
 public class BaseResponse {
-    int Ret;
-    String ErrMsg;
+    private int Ret;
+    private String ErrMsg;
+
+    public int getRet() {
+        return Ret;
+    }
+
+    public void setRet(int ret) {
+        Ret = ret;
+    }
+
+    public String getErrMsg() {
+        return ErrMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        ErrMsg = errMsg;
+    }
 }
